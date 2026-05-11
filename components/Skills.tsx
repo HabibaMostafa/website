@@ -75,7 +75,7 @@ function SkillCategory({
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full flex items-center justify-between p-6 hover:bg-light-accent/5 dark:hover:bg-dark-accent/5 transition-colors"
       >
-        <h3 className="text-xl md:text-2xl font-bold text-left">{category.title}</h3>
+        <h3 className="text-base font-semibold text-left text-light-text dark:text-dark-text">{category.title}</h3>
         <motion.svg
           className="w-6 h-6 text-light-accent dark:text-dark-accent"
           fill="none"
@@ -129,17 +129,17 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-light-surface dark:bg-dark-surface">
+    <section id="skills" className="py-20 md:py-32">
       <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Skills & Expertise
+          <h2 className="text-xl font-bold mb-4 text-light-text dark:text-dark-text">
+            Skills
           </h2>
         </motion.div>
 

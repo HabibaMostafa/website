@@ -1,80 +1,62 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { useTheme } from './ThemeProvider'
 
+const navLinks = [
+  { href: '#about', label: 'About', serif: false },
+  { href: '#work', label: 'Work', serif: false },
+  { href: '#skills', label: 'Skills', serif: true },
+  { href: '#contact', label: 'Contact', serif: false },
+]
+
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false)
   const { theme, toggleTheme } = useTheme()
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const [hovered, setHovered] = useState<string | null>(null)
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-light-surface/80 dark:bg-dark-surface/80 backdrop-blur-lg shadow-lg'
-          : 'bg-transparent'
-      }`}
+      className="bg-transparent"
     >
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#" className="text-2xl font-bold hover:text-light-accent dark:hover:text-dark-accent transition-colors">
-            Habiba
-          </a>
-
+        <div className="relative flex items-center justify-center h-16 md:h-20">
           {/* Navigation Links */}
-          <ul className="hidden md:flex items-center gap-8">
-            <li>
-              <a
-                href="#about"
-                className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text transition-colors"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="#work"
-                className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text transition-colors"
-              >
-                Work
-              </a>
-            </li>
-            <li>
-              <a
-                href="#skills"
-                className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text transition-colors"
-              >
-                Skills
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text transition-colors"
-              >
-                Contact
-              </a>
-            </li>
+          <ul className="flex items-center gap-2">
+            {navLinks.map(({ href, label, serif }) => (
+              <li key={href}>
+                <motion.a
+                  href={href}
+                  className={`relative px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary transition-colors block font-medium tracking-wide ${serif ? 'font-serif' : 'font-[family-name:var(--font-nunito)]'}`}
+                  onHoverStart={() => setHovered(label)}
+                  onHoverEnd={() => setHovered(null)}
+                  animate={{ color: hovered === label ? 'var(--color-accent)' : undefined }}
+                  whileHover={{ y: -2 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                  {hovered === label && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-light-accent/10 dark:bg-dark-accent/10"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{label}</span>
+                </motion.a>
+              </li>
+            ))}
           </ul>
 
           {/* Theme Toggle */}
-          <button
+          <motion.button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-light-accent/10 dark:hover:bg-dark-accent/10 transition-colors"
+            className="absolute right-0 p-2 rounded-lg hover:bg-light-accent/10 dark:hover:bg-dark-accent/10 transition-colors text-light-text dark:text-dark-text"
             aria-label="Toggle theme"
+            whileHover={{ rotate: 20, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           >
             {theme === 'light' ? (
               <svg
@@ -105,7 +87,7 @@ export default function Navigation() {
                 />
               </svg>
             )}
-          </button>
+          </motion.button>
         </div>
       </div>
     </motion.nav>
