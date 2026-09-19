@@ -136,17 +136,19 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="mb-16 max-w-4xl mx-auto"
+          className="mb-16 max-w-6xl mx-auto"
         >
           <p className="text-lg md:text-xl text-light-text-secondary dark:text-dark-text-secondary font-[family-name:var(--font-nunito)]">
             Skills
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
-          {skillCategories.map((category, index) => (
-            <SkillCategory key={category.title} category={category} index={index} />
-          ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl space-y-4">
+            {skillCategories.map((category, index) => (
+              <SkillCategory key={category.title} category={category} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
