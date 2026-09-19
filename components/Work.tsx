@@ -104,7 +104,7 @@ export default function Work() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 max-w-6xl mx-auto"
         >
           <p className="text-lg md:text-xl text-light-text-secondary dark:text-dark-text-secondary font-[family-name:var(--font-nunito)]">
             Checkout my work

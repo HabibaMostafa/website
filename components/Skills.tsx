@@ -6,21 +6,21 @@ import { useRef, useState } from 'react'
 
 const skillCategories = [
   {
-    title: 'Engineering',
-    skills: [
-      'Frontend (React, TypeScript, modern web frameworks)',
-      'Backend fundamentals',
-      'Cloud & scalable systems',
-      'API design',
-    ],
-  },
-  {
     title: 'Product & Strategy',
     skills: [
       'Feature discovery & scoping',
       'Metrics & adoption thinking',
       'MVP iteration',
       'Cross-functional collaboration',
+    ],
+  },
+  {
+    title: 'Engineering',
+    skills: [
+      'Frontend (React, TypeScript, modern web frameworks)',
+      'Backend fundamentals',
+      'Cloud & scalable systems',
+      'API design',
     ],
   },
   {
@@ -136,11 +136,11 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 max-w-4xl mx-auto"
         >
-          <h2 className="text-xl font-bold mb-4 text-light-text dark:text-dark-text">
+          <p className="text-lg md:text-xl text-light-text-secondary dark:text-dark-text-secondary font-[family-name:var(--font-nunito)]">
             Skills
-          </h2>
+          </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto space-y-4">

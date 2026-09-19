@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { useTheme } from './ThemeProvider'
 
 const navLinks = [
-  { href: '#about', label: 'About', serif: false },
-  { href: '#work', label: 'Work', serif: false },
-  { href: '#skills', label: 'Skills', serif: true },
-  { href: '#contact', label: 'Contact', serif: false },
+  { href: '#about', label: 'About' },
+  { href: '#work', label: 'Work' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#contact', label: 'Contact' },
 ]
 
 export default function Navigation() {
@@ -25,11 +25,11 @@ export default function Navigation() {
         <div className="relative flex items-center justify-center h-16 md:h-20">
           {/* Navigation Links */}
           <ul className="flex items-center gap-2">
-            {navLinks.map(({ href, label, serif }) => (
+            {navLinks.map(({ href, label }) => (
               <li key={href}>
                 <motion.a
                   href={href}
-                  className={`relative px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary transition-colors block font-medium tracking-wide ${serif ? 'font-serif' : 'font-[family-name:var(--font-nunito)]'}`}
+                  className={`relative px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary transition-colors block font-medium tracking-wide font-[family-name:var(--font-nunito)]`}
                   onHoverStart={() => setHovered(label)}
                   onHoverEnd={() => setHovered(null)}
                   animate={{ color: hovered === label ? 'var(--color-accent)' : undefined }}
